@@ -26,7 +26,7 @@ class Places {
                 {'geometry.coordinates':
                     {$near: 
                         {$geometry:
-                            {type: "Point", coordinates: coord}, $maxDistance: 30
+                            {type: "Point", coordinates: coord}, $maxDistance: this.maxDistance, $minDistance: this.minDistance
                         }
                     }
                 });
