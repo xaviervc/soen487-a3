@@ -2,7 +2,10 @@ const express = require('express');
 const app = express();
 const Places = require('./models/Places');
 
+//Not sure if we need this
 app.use(express.urlencoded({extended: true}));
+
+//Accepts json
 app.use(express.json()) 
 
 
@@ -26,9 +29,6 @@ app.post('/near',(req,res)=> {
     )
       
 })
-
-
-
 
 app.post('/', (req, res) =>{
     console.log(req.body);
