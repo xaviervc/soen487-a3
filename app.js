@@ -18,7 +18,7 @@ app.post('/near',(req,res)=> {
     console.log(coordinate)
 
     var place = new Places(max,min)
-    var responseBody = place.near(coordinate).then(
+    place.near(coordinate).then(
         result => {
             console.log(result)
             res.json(result)
