@@ -12,6 +12,7 @@ app.use(express.json())
 //Routes
 app.post('/near',(req,res)=> {
     
+    //Extract data from json
     jsonData = req.body
     var longitude = parseFloat(jsonData.longitude)
     var latitude = parseFloat(jsonData.latitude)
@@ -19,7 +20,7 @@ app.post('/near',(req,res)=> {
     var min = 0
     var coordinate = [longitude,latitude]
     console.log(coordinate)
-
+    //Complete query and send back json result. We can also just send the coordinates for google-maps api to consume
     var place = new Places(max,min)
     place.near(coordinate).then(
         result => {
