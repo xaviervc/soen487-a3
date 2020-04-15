@@ -7,11 +7,7 @@ app.use(express.json())
 
 
 //Routes
-app.get('/', (req, res) => {
-    res.send(export_places);
-});
-
-app.post('/jsonLocation',(req,res)=> {
+app.post('/near',(req,res)=> {
     
     jsonData = req.body
     var longitude = parseFloat(jsonData.longitude)
