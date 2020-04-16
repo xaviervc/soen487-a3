@@ -17,6 +17,7 @@ app.post('/near',(req,res)=> {
     var longitude = parseFloat(jsonData.longitude)
     var latitude = parseFloat(jsonData.latitude)
     var max = parseInt(jsonData.max)
+    // we can change this to pass a minimum distance but why?
     var min = 0
     var coordinate = [longitude,latitude]
     console.log(coordinate)
