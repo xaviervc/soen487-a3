@@ -1,42 +1,28 @@
 const express = require('express');
 const app = express();
-const Places = require('./models/Places');
+const mongoose = require('mongoose');
 
-//Not sure if we need this
-app.use(express.urlencoded({extended: true}));
+// Import routes
+const authRoute = require('./routes/auth');
+const privateRoute = require('./routes/privateTestRoutes');
 
-//Accepts json
-app.use(express.json()) 
+//CONNECT TO DB
+// mongoose.connect('mongodb+srv://487user:soen487@cluster0-8deyj.mongodb.net/usersDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+// 	console.log('Conneteto db !');
+// });
 
-
-//Routes
-app.post('/near',(req,res)=> {
-    
-    //Extract data from json
-    jsonData = req.body
-    var longitude = parseFloat(jsonData.longitude)
-    var latitude = parseFloat(jsonData.latitude)
-    var max = parseInt(jsonData.max)
-    // we can change this to pass a minimum distance but why?
-    var min = 0
-    var coordinate = [longitude,latitude]
-    console.log(coordinate)
-    //Complete query and send back json result. We can also just send the coordinates for google-maps api to consume
-    var place = new Places(max,min)
-    place.near(coordinate).then(
-        result => {
-            console.log(result)
-            res.json(result)
-        }
-    )
-      
-})
-
-app.post('/', (req, res) =>{
-    console.log(req.body);
-    res.status(200).end();
-})
+mongoose.connect('mongodb://localhost:27017/parking-app', { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+	console.log('Connetedto db !');
+});
 
 
+// Middleware
+app.use(express.json());
 
-app.listen(3000);
+// Routes MIDDLEWARES
+app.use('/api/user', authRoute);
+app.use('/api/private', privateRoute);
+
+//How to start listening to the server
+app.listen(3000, () => console.log('Server is up and running'));
+
