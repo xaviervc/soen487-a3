@@ -12,7 +12,7 @@ class Places {
 
     async near(coord){
 
-        const client = await MongoClient.connect(url, {useNewUrlParser: true})
+        const client = await MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
         .catch(error => {console.log(error)});
 
         if(!client){
@@ -29,7 +29,7 @@ class Places {
                             {type: "Point", coordinates: coord}, $maxDistance: this.maxDistance, $minDistance: this.minDistance
                         }
                     }
-                });
+                }).limit(20);
             return await result.toArray();
         }catch(error){
             console.log(error);

@@ -6,7 +6,7 @@ router.get('/test', verify, (req,res) => {
 	res.json({
 		posts: {
 			title: 'some test title', 
-			descriprion: 'some test desc that should be private'
+			description: 'some test desc that should be private'
 		}
 	});
 });
@@ -24,11 +24,12 @@ router.post('/near', verify, (req,res)=> {
     console.log(coordinate)
     //Complete query and send back json result. We can also just send the coordinates for google-maps api to consume
     var place = new Places(max,min)
-    place.near(coordinate).then(
-        result => {
-            console.log(result)
-            res.json(result)
-        }
+    place.near(coordinate)
+        .then(
+            (result) => {
+                console.log(result)
+                res.status(200).json(result)
+            }
     )
       
 })

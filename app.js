@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // Import routes
 const authRoute = require('./routes/auth');
@@ -18,6 +19,7 @@ mongoose.connect('mongodb://localhost:27017/parking-app', { useNewUrlParser: tru
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // Routes MIDDLEWARES
 app.use('/api/user', authRoute);

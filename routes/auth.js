@@ -40,7 +40,7 @@ router.post('/register', async (req,res) => {
 	})
 	try{
 		const savedUser = await user.save();
-		res.send({user: user._id});
+		res.status(200).send({user: user._id});
 	}catch(err){
 		res.status(400).send(err);
 	}
@@ -61,7 +61,8 @@ router.post('/login', async (req,res) => {
 
 	// Create a token to keep making requests when logging in (using user id in the db and a random token secret)
 	const token = jwt.sign({_id: user._id}, tokenSecret);
-	res.header('auth-token', token).send(token);
+	// res.header('auth-token', token).send(token);
+	res.status(200).send({"auth-token": token});
 });
 
 module.exports = router;
