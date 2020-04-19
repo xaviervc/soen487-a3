@@ -5,7 +5,7 @@ const cors = require('cors');
 
 // Import routes
 const authRoute = require('./routes/auth');
-const privateRoute = require('./routes/privateTestRoutes');
+const privateRoute = require('./routes/privateRoutes');
 
 //CONNECT TO DB
 // mongoose.connect('mongodb+srv://487user:soen487@cluster0-8deyj.mongodb.net/usersDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }, () => {

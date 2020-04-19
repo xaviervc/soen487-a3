@@ -11,13 +11,12 @@ router.get('/test', verify, (req,res) => {
 	});
 });
 
-router.post('/near', verify, (req,res)=> {
+router.get('/near', verify, (req,res)=> {
     
     //Extract data from json
-    jsonData = req.body
-    var longitude = parseFloat(jsonData.longitude)
-    var latitude = parseFloat(jsonData.latitude)
-    var max = parseInt(jsonData.max)
+    var longitude = parseFloat(req.query.longitude)
+    var latitude = parseFloat(req.query.latitude)
+    var max = parseInt(req.query.max)
     // we can change this to pass a minimum distance but why?
     var min = 0
     var coordinate = [longitude,latitude]
@@ -31,7 +30,6 @@ router.post('/near', verify, (req,res)=> {
                 res.status(200).json(result)
             }
     )
-      
 })
 
 module.exports = router;
