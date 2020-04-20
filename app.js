@@ -13,7 +13,7 @@ const privateRoute = require('./routes/privateRoutes');
 // });
 
 mongoose.connect('mongodb://localhost:27017/parking-app', { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-	console.log('Connetedto db !');
+	console.log('Connected to db.');
 });
 
 
@@ -26,4 +26,4 @@ app.use('/api/user', authRoute);
 app.use('/api/private', privateRoute);
 
 //How to start listening to the server
-app.listen(3000, () => console.log('Server is up and running'));
+app.listen(3000, () => console.log('Server is running on port 3000...'));

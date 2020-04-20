@@ -10,7 +10,7 @@ class Places {
         this.minDistance = minDistance;
     }
 
-    async near(coord){
+    async near(coord,num_entries){
 
         const client = await MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
         .catch(error => {console.log(error)});
@@ -29,7 +29,7 @@ class Places {
                             {type: "Point", coordinates: coord}, $maxDistance: this.maxDistance, $minDistance: this.minDistance
                         }
                     }
-                }).limit(20);
+                }).limit(num_entries);
             return await result.toArray();
         }catch(error){
             console.log(error);
